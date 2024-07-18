@@ -1,0 +1,32 @@
+
+.Login{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+    align-items: center;
+    background-color: white;
+    gap: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px gray;
+}
+.Info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+.Info> input{
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid rgb(220,220,220);
+}
+button{
+    cursor: pointer;
+    width: 151px;
+    border: none;
+    background-color: rgb(27,147,255);
+    color: white;
+    border-radius: 5px;
+}
+
