@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, Route, Routes } from "react";
 import "./App.css";
 import SignUp from "./signup/Signup";
-
+import Vocab from "./vocabulary/Vocab";
+import Header from "./component/Header";
 const idData = [
   {
     num: 0,
@@ -25,7 +26,13 @@ function App() {
 
   return (
     <div className="App">
-      <SignUp onCreate={onCreate} idData={idData} />
+      <Vocab />
+      {/* <SignUp onCreate={onCreate} idData={idData} /> */}
+
+      {/* <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes> */}
     </div>
   );
 }
