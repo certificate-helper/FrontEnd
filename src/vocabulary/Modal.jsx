@@ -1,18 +1,33 @@
 import "./Modal.css";
-const Modal = ({ show, onClose ,text}) => {
+const Modal = ({
+  show,
+  onClose,
+  text,
+  onConfirm,
+  onBookmarkToggle,
+  isBookmarked,
+}) => {
   if (!show) {
     return null;
   }
   return (
     <div className="modal">
-      <h2>단어</h2>
+      <h2>{text}</h2>
       <div className="definition">
-        <div className="vocab_def">
-            단어
+        <div className="vocab_def">해설:{text}</div>
+        <div>
+          <input
+            type="checkbox"
+            checked={isBookmarked}
+            onChange={onBookmarkToggle}
+          />
         </div>
-        <button className="close_btn" onClick={onClose}>
-          닫기
-        </button>
+        <div className="btn">
+          <button onClick={onConfirm}>추가</button>
+          <button className="close_btn" onClick={onClose}>
+            닫기
+          </button>
+        </div>
       </div>
     </div>
   );
