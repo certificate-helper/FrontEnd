@@ -1,11 +1,12 @@
 import "./Vocab.css";
 import Header from "../component/Header";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Modal from "./Modal";
 
 const Vocab = () => {
   const [showModal, setShowModel] = useState(false);
   const [word, setWord] = useState("");
+  const wordRef = useRef();
   const [wordList, setWordList] = useState([]);
   const [modalWord, setModalWord] = useState("");
   const [isBookMarked, setIsBookMarked] = useState(false);
@@ -21,6 +22,8 @@ const Vocab = () => {
     if (word !== "") {
       setModalWord(word);
       toggleModal();
+    } else {
+      wordRef.current.focus();
     }
   };
 
@@ -47,6 +50,7 @@ const Vocab = () => {
         <h2>검색창</h2>
         <input
           value={word}
+          ref={wordRef}
           onChange={searchWord}
           type="text"
           placeholder="단어입력"
