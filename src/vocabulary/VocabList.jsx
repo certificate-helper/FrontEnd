@@ -11,9 +11,13 @@ const VocabList = ({ searchResult, vocabData }) => {
   const listToDisplay = searchResult !== null ? searchResult : vocabList;
   const pageCount = Math.ceil(listToDisplay.length / itemsPerPage);
   const listRef = useRef(null);
+
+  //페이지를 누를때 바뀐다
   const handlePageClick = (event) => {
     setCurrentPage(event.selected);
   };
+
+  //currentPage가 바뀔때마다 동작
   useEffect(() => {
     if (listRef.current) {
       listRef.current.scrollIntoView({ behavior: "smooth" });
