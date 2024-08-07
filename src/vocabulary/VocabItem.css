@@ -1,0 +1,36 @@
+.VocabItem > section {
+  margin-bottom: 40px;
+}
+.VocabItem {
+  display: flex;
+  width: 400px;
+  
+  background-color: rgb(236, 236, 236);
+  padding: 20px;
+  flex-direction: column;
+  border-radius: 5px;
+}
+.VocabItem .word_addImg {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.voca_addImg{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.add_img {
+  width: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.VocabItem_selected_true .voca {
+  color: blue;
+}
+.add_vocab {
+  border: none;
+}

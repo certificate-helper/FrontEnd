@@ -1,6 +1,7 @@
+import "./Header.css";
 const Header = () => {
   return (
-    <div>
+    <div className="Header">
       <h1>Certificate Helper</h1>
     </div>
   );

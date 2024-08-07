@@ -1,32 +1,62 @@
-
-.Login{
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    height: 300px;
-    align-items: center;
-    background-color: white;
-    gap: 10px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px gray;
+.LoginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 600px;
 }
-.Info{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
+.Login {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 300px;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, white, #aeadad);
+  gap: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 100, 0.4) 10px 10px 29px 10px;
 }
-.Info> input{
-    border-radius: 5px;
-    padding: 5px;
-    border: 1px solid rgb(220,220,220);
+h2 {
+  display: flex;
+  justify-content: center;
 }
-button{
-    cursor: pointer;
-    width: 151px;
-    border: none;
-    background-color: rgb(27,147,255);
-    color: white;
-    border-radius: 5px;
+.Info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
 }
-
+.IdInfo {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  gap: 10px;
+}
+.IdInfo > label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+.PwInfo {
+  width: 100%;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  gap: 10px;
+}
+.PwInfo > label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
