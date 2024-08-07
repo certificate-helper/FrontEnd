@@ -1,5 +1,3 @@
-
-
 import addImg from "../assets/addImg2.png";
 import "./VocabItem.css";
 import { useContext, useState, useEffect } from "react";
@@ -30,12 +28,14 @@ const VocabItem = ({ id, voca, explain, selected }) => {
       // 상태 업데이트
       onUpdate(id, voca, explain, !isSelected);
       if (!isSelected) {
-        axios;
-        const data = {
-          id: "test",
-          voca: voca,
-        }
-          .post(`http://172.30.1.28:8080/saveMyVoca`,data)
+        axios
+          .post(
+            `http://172.30.1.28:8080/saveMyVoca`,
+            new URLSearchParams({
+              id: "test",
+              voca: voca,
+            })
+          )
           // .post(`http://172.30.1.28:8080/remove-my-voca?id=${"test"}&voca=${voca}`)
           .then((response) => {
             console.log(response);
@@ -43,8 +43,7 @@ const VocabItem = ({ id, voca, explain, selected }) => {
           .catch((error) => {
             console.log(error);
           });
-      }
-      else {
+      } else {
         axios
           .post(
             `http://172.30.1.28:8080/remove-my-voca?id=${"test"}&voca=${voca}`
