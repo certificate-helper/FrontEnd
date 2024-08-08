@@ -66,6 +66,7 @@
 import "./Signup.css";
 import { useState, useRef } from "react";
 import axios from "axios";
+import Button from "../component/Button";
 
 const SignUp = ({ onCreate }) => {
   const [Id, setId] = useState("");
@@ -140,39 +141,41 @@ const SignUp = ({ onCreate }) => {
     }
   };
   return (
-    <div className="Sign">
-      <h2>회원가입</h2>
-      <div className="info">
-        <span>아이디</span>
-        <div className="confirm">
+    <div className="SignContainer">
+      <div className="Sign">
+        <h2>회원가입</h2>
+        <div className="info">
+          <span>아이디</span>
+          <div className="confirm">
+            <input
+              ref={IdRef}
+              value={Id}
+              onChange={onChangeId}
+              onKeyDown={onKeyDown}
+              placeholder="아이디를 입력(6~20자)"
+            />
+            <Button onClick={checkId} text={"중복검사"} />
+          </div>
+          {checkMessage && <p>{checkMessage}</p>}
+          <span>비밀번호</span>
           <input
-            ref={IdRef}
-            value={Id}
-            onChange={onChangeId}
-            onKeyDown={onKeyDown}
-            placeholder="아이디를 입력(6~20자)"
+            type="password"
+            placeholder="비밀번호를 입력(문자,숫자,특수문자포함 4~10)"
           />
-          <button onClick={checkId}>중복검사</button>
-        </div>
-        {checkMessage && <p>{checkMessage}</p>}
-        <span>비밀번호</span>
-        <input
-          type="password"
-          placeholder="비밀번호를 입력(문자,숫자,특수문자포함 4~10)"
-        />
           <span>비밀번호 확인</span>
-        <div className="pass">
-          <input type="password" placeholder="비밀번호 재입력" />
-          <button>비밀번호 확인</button>
+          <div className="pass">
+            <input type="password" placeholder="비밀번호 재입력" />
+            <Button text={"비밀번호 확인"} />
+          </div>
+          <span>관심기사자격증</span>
+          <select name="certificate">
+            <option value="">정보처리기사</option>
+            <option value="">위험물산업안전기사</option>
+            <option value="">전기기사</option>
+          </select>
+          <Button text={"가입"} />
         </div>
-        <span>관심기사자격증</span>
-        <select name="certificate">
-          <option value="">정보처리기사</option>
-          <option value="">위험물산업안전기사</option>
-          <option value="">전기기사</option>
-        </select>
       </div>
-      <button>가입</button>
     </div>
   );
 };
