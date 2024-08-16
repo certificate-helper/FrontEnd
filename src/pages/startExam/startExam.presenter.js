@@ -40,7 +40,7 @@ export default function StartExamUI({
                 />
                 <button type="submit">문제 가져오기</button>
               </form> */}
-              {exam && num <= 7 && (
+              {exam && num <= 13 && (
                 <div>
                   <h3>Exam Problem</h3>
                   <p>{exam.problem}</p>
@@ -62,6 +62,7 @@ export default function StartExamUI({
                   onChange={(e) => setAnswer(e.target.value)}
                   required
                 />
+                ;
                 <S.ButtonWrapper>
                   <S.PreviousButton
                     onClick={() => {

@@ -4,9 +4,9 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 function ResultPage() {
-  const endpoint = "http://165.229.125.81:8080";
+  const endpoint = "http://165.229.125.137:8080";
   const [num, setNum] = useState(1);
-  const [answer, setAnswer] = useState("");
+  const [answer, setAnswer] = useState();
   const [exam, setExam] = useState(null);
   const router = useRouter();
 
@@ -15,7 +15,7 @@ function ResultPage() {
   }, [num]);
 
   const handleGetExam = async (num) => {
-    if (num <= 7) {
+    if (num <= 13) {
       try {
         const response = await axios.get(`${endpoint}/do-exam`, {
           params: {
@@ -46,11 +46,11 @@ function ResultPage() {
   };
 
   const onClickToCountUp = () => {
-    if (num != 8) {
+    if (num != 13) {
       setNum((prevNum) => prevNum + 1);
       handleGetExam();
     } else {
-      router.push("../resultExam/resultExam");
+      router.push("../result/resultExam.container");
     }
   };
 
