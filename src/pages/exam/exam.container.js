@@ -9,7 +9,7 @@ export default function Exam() {
   const [id, setId] = useState("");
 
   const router = useRouter();
-  const endpoint = "http://165.229.125.81:8080";
+  const endpoint = "http://165.229.125.137:8080";
 
   const onClickToStart = async (e) => {
     e.preventDefault();

@@ -40,6 +40,23 @@ export const BannerContainer = styled.div`
   }
 `;
 
+export const PieContainer = styled.div`
+  width: 100%;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  padding-top: 1rem;
+  transition: all 0.3s ease-in-out;
+  border: 0.5rem solid #fff;
+  border-radius: 1.5rem;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  padding: 5rem 2rem;
+  box-shadow: 4px 4px 10px #b7aaaa, -4px -4px 10px #ffffff;
+`;
+
 export const HighlightedText = styled.span`
   color: #ffe066;
   text-shadow: 0 0 10px rgba(255, 224, 102, 0.7),

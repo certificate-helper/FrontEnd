@@ -7,11 +7,15 @@ export default function HeaderUI() {
   const onClickToHome = () => {
     router.push("/");
   };
+
+  const onClickToProfile = () => {
+    router.push("/profile/profile.container");
+  };
   return (
     <Header>
       <Logo onClick={onClickToHome}>자격증헬퍼</Logo>
       <HeaderText>ID님, 오늘도 힘내세요!</HeaderText>
-      <HeaderButton>view profile</HeaderButton>
+      <HeaderButton onClick={onClickToProfile}>view profile</HeaderButton>
     </Header>
   );
 }
