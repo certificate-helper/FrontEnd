@@ -1,9 +1,8 @@
 import "./MyVoca.css";
-import Header from "../component/Header";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Button from "../component/Button";
+import CustomButton from "../component/CustomButton";
 
 const MyVoca = () => {
   // 선택된 단어들을 관리하는 상태 변수, 초기값은 빈 배열
@@ -14,7 +13,7 @@ const MyVoca = () => {
   useEffect(() => {
     // API 호출하여 단어 데이터를 가져옴
     axios
-      .get("http://172.30.1.28:8080/getAllVoca", {
+      .get("http://192.0.0.1:8080/getAllVoca", {
         params: { id: "test" },
       })
       .then((response) => {
@@ -30,7 +29,7 @@ const MyVoca = () => {
   return (
     <div className="selectedWordsWrapper">
       <section className="selectedWordSection">
-        <h3>단어장</h3>
+        <div className="select_title">MINE</div>
         <div className="selectedWord">
           {selectedWords.length > 0 ? (
             selectedWords.map((item) => (
@@ -43,7 +42,7 @@ const MyVoca = () => {
             <p>선택된 단어가 없습니다.</p>
           )}
         </div>
-        <Button onClick={() => nav(-1)} text={"뒤로가기"} />
+        <CustomButton onClick={() => nav(-1)} text={"뒤로가기"} />
       </section>
     </div>
   );

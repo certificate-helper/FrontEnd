@@ -4,11 +4,11 @@
 .VocabItem {
   display: flex;
   width: 400px;
-  
-  background-color: rgb(236, 236, 236);
   padding: 20px;
   flex-direction: column;
   border-radius: 5px;
+  border: 3px solid #2788f9;
+  background-color: #efefef;
 }
 .VocabItem .word_addImg {
   display: flex;
@@ -16,10 +16,11 @@
   justify-content: space-between;
   align-items: center;
 }
-.voca_addImg{
+.voca_addImg {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 }
 .add_img {
   width: 10px;
@@ -29,7 +30,7 @@
   align-items: center;
 }
 .VocabItem_selected_true .voca {
-  color: blue;
+  color: #2788f9;
 }
 .add_vocab {
   border: none;

@@ -66,7 +66,7 @@
 import "./Signup.css";
 import { useState, useRef } from "react";
 import axios from "axios";
-import Button from "../component/Button";
+import CustomButton from "../component/CustomButton";
 
 const SignUp = ({ onCreate }) => {
   const [Id, setId] = useState("");
@@ -154,8 +154,8 @@ const SignUp = ({ onCreate }) => {
               onKeyDown={onKeyDown}
               placeholder="아이디를 입력(6~20자)"
             />
-            <Button onClick={checkId} text={"중복검사"} />
           </div>
+            <CustomButton onClick={checkId} text={"중복검사"} />
           {checkMessage && <p>{checkMessage}</p>}
           <span>비밀번호</span>
           <input
@@ -165,15 +165,15 @@ const SignUp = ({ onCreate }) => {
           <span>비밀번호 확인</span>
           <div className="pass">
             <input type="password" placeholder="비밀번호 재입력" />
-            <Button text={"비밀번호 확인"} />
           </div>
+            <CustomButton text={"비밀번호 확인"} />
           <span>관심기사자격증</span>
           <select name="certificate">
             <option value="">정보처리기사</option>
             <option value="">위험물산업안전기사</option>
             <option value="">전기기사</option>
           </select>
-          <Button text={"가입"} />
+          <CustomButton text={"가입"} />
         </div>
       </div>
     </div>
