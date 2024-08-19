@@ -5,28 +5,36 @@
   align-items: center;
   width: 100%;
   height: 100vh;
+  border-radius: 30px;
 }
-
 .selectedWordSection {
   width: 100%;
   height: 100vh;
-  background-color: yellowgreen;
+  background-color: white;
+  border: 10px solid black;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
   align-items: center;
+  border-radius: 30px;
 }
-.selectedWord > ul {
-  border: 1px solid black;
+.select_title {
+  background-color: #2788f9;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.selectedWord {
+  border: 3px solid #2788f9;
   border-radius: 5px;
   background-color: #efefef;
   padding: 5px;
   margin: 10px;
-}
-.word {
-  font-size: 25px;
-  padding-bottom: 5px;
-}
-.explain {
+  width: 400px;
   font-size: 20px;
+  padding-bottom: 5px;
 }

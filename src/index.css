@@ -1,16 +1,16 @@
 @font-face {
-  font-family: "NanumPenScript";
-  src: url("/NanumPenScript-Regular.ttf");
+  font-family: "PYEONG";
+  src: url("/pyeong_bold.ttf");
 }
 body {
-  font-family: "NanumPenscript";
+  font-family: "PYEONG";
   display: flex;
   margin: 0;
   width: 100%;
   background-color: #efefef;
 }
 #root {
-  max-width: 600px;
+  max-width: 900px;
   width: 100%;
   margin: 0 auto;
   min-height: 100vh;
