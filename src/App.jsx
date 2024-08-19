@@ -1,11 +1,17 @@
 import { useState, useRef, useReducer, createContext } from "react";
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
-import SignUp from "./signup/Signup";
-import Vocab from "./vocabulary/Vocab";
+
+import SignUp from "./pages/signups/Signup";
+import Vocab from "./pages/vocabulary/Vocab";
 import Header from "./component/Header";
-import Login from "./login/Login";
-import MyVoca from "./vocabulary/MyVoca";
+import Login from "./pages/login/Login";
+import MyVoca from "./pages/vocabulary/MyVoca";
+import Home from "./pages/home/home.container";
+import StartExam from "./pages/startExam/startExam.container";
+import ResultExam from "./pages/result/resultExam.container";
+import Profile from "./pages/profile/profile.container";
+import Exam from "./pages/exam/exam.container";
+import GlobalStyle from "./pages/global";
 
 const VocabData = [
   {
@@ -142,7 +148,7 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <GlobalStyle />
       <DiaryStateContext.Provider value={data}>
         <DiaryDispatchContext.Provider
           value={{
@@ -155,6 +161,11 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/myvoca" element={<MyVoca />} />
+            <Route path="/home" element={<Home />} />{" "}
+            <Route path="/startExam" element={<StartExam />} />{" "}
+            <Route path="/resultExam" element={<ResultExam />} />{" "}
+            <Route path="/exam" element={<Exam />} />{" "}
+            <Route path="/profile" element={<Profile />} />a
           </Routes>
         </DiaryDispatchContext.Provider>
       </DiaryStateContext.Provider>
