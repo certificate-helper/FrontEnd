@@ -12,9 +12,6 @@ import ResultExam from "./pages/result/resultExam.container";
 import Profile from "./pages/profile/profile.container";
 import Exam from "./pages/exam/exam.container";
 import GlobalStyle from "./pages/global";
-import Quiz from "./pages/Quiz/quiz";
-import Statistics from "./pages/Statistic/statistics";
-import Note from "./pages/WrongNote/note";
 
 const VocabData = [
   {
@@ -169,9 +166,9 @@ function App() {
             <Route path="/resultExam" element={<ResultExam />} />{" "}
             <Route path="/exam" element={<Exam />} />{" "}
             <Route path="/profile" element={<Profile />} />
-            <Route path="/quiz" element={<Quiz />} />
+            {/* <Route path="/quiz" element={<Quiz />} />
             <Route path="/note" element={<Note />} />
-            <Route path="/statistics" element={<Statistics />} />
+            <Route path="/statistics" element={<Statistics />} /> */}
           </Routes>
         </DiaryDispatchContext.Provider>
       </DiaryStateContext.Provider>

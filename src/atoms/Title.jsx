@@ -12,7 +12,7 @@ export const TopTitle = styled.b`
   transition: transform 0.5s ease, opacity 0.5s ease;
   opacity: 0;
   animation: slideIn 1s forwards;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   @keyframes slideIn {
     to {
       transform: translateX(0);
