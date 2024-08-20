@@ -1,0 +1,56 @@
+/* startPage.css */
+.MainWrapper {
+  width: 100%;
+  height: 100vh; /* 전체 화면 높이 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #ffcec7 0%,
+    #fff4cc 66%,
+    #fff3c9 69%,
+    #ffffff 96%
+  );
+  cursor: pointer;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel.slide {
+  transform: translateY(-100%); /* 슬라이드 위로 이동 */
+}
+
+button {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 16px;
+}
+
+.prev {
+  bottom: 20px;
+  left: 20px;
+}
+
+.next {
+  bottom: 20px;
+  right: 20px;
+}

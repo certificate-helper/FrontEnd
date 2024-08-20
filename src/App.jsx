@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 
 import SignUp from "./pages/signups/Signup";
 import Vocab from "./pages/vocabulary/Vocab";
-import Header from "./component/Header";
 import Login from "./pages/login/Login";
 import MyVoca from "./pages/vocabulary/MyVoca";
 import Home from "./pages/home/home.container";
@@ -12,7 +11,7 @@ import ResultExam from "./pages/result/resultExam.container";
 import Profile from "./pages/profile/profile.container";
 import Exam from "./pages/exam/exam.container";
 import GlobalStyle from "./pages/global";
-
+import StartPage from "./pages/start/startPage";
 const VocabData = [
   {
     id: 1,
@@ -166,6 +165,7 @@ function App() {
             <Route path="/resultExam" element={<ResultExam />} />{" "}
             <Route path="/exam" element={<Exam />} />{" "}
             <Route path="/profile" element={<Profile />} />
+            <Route path="/startpage" element={<StartPage />} />
             {/* <Route path="/quiz" element={<Quiz />} />
             <Route path="/note" element={<Note />} />
             <Route path="/statistics" element={<Statistics />} /> */}
