@@ -16,6 +16,24 @@ export default function Quiz() {
 
   const id = "test";
 
+  // 퀴즈 설정 함수
+  const handleQuizSetup = async () => {
+    try {
+      const response = await axios.post(
+        "http://165.229.125.137:8080/setQuiz",
+        { id: "test" },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Quiz set successfully");
+    } catch (error) {
+      console.error("Error setting up quiz", error);
+    }
+  };
+
   const fetchQuestion = async (index) => {
     try {
       const response = await axios.get("http://165.229.125.137:8080/doQuiz", {
@@ -51,27 +69,14 @@ export default function Quiz() {
     }
   };
 
-  const setQuiz = async () => {
-    try {
-      await axios.post(
-        "http://165.229.125.137:8080/setQuiz",
-        {
-          id: id,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      console.log("Quiz set successfully");
-    } catch (error) {
-      console.error("Error setting quiz", error);
-    }
-  };
-
+  // 퀴즈 초기화
   useEffect(() => {
-    fetchQuizTotal();
+    const initializeQuiz = async () => {
+      await handleQuizSetup(); // 퀴즈 설정
+      await fetchQuizTotal(); // 총 문제 수를 가져옴
+    };
+
+    initializeQuiz();
   }, []);
 
   useEffect(() => {
@@ -79,12 +84,6 @@ export default function Quiz() {
       fetchQuestion(questionIndex);
     }
   }, [questionIndex, quizTotal]);
-
-  useEffect(() => {
-    if (!loading && quizTotal > 0) {
-      setQuiz();
-    }
-  }, [loading, quizTotal]);
 
   useEffect(() => {
     checkIfAllQuestionsAnswered();
