@@ -105,11 +105,83 @@ const ChartWrapper = styled.div`
   min-width: 0;
 `;
 
+// Pie 차트 옵션 설정
+const pieChartOptions = {
+  responsive: true,
+  plugins: {
+    legend: {
+      display: false, // 범례를 숨김
+      labels: {
+        color: "black", // 범례 글자 색상을 검은색으로 설정
+      },
+    },
+    title: {
+      display: true,
+      text: "내가 어떤 단어를 얼마나 틀렸을까?", // Pie 차트 제목 설정
+      color: "black", // 제목 글자 색상을 검은색으로 설정
+      font: {
+        size: 18,
+      },
+    },
+    datalabels: {
+      color: "black", // 데이터 레이블의 글자 색상을 검은색으로 설정
+    },
+  },
+};
+
+const barChartOptions = {
+  responsive: true,
+  plugins: {
+    legend: {
+      display: true,
+      position: "top",
+      labels: {
+        color: "black", // 범례 글자 색상을 검은색으로 설정
+      },
+    },
+    title: {
+      display: true,
+      text: "퀴즈 회차 별 정답 개수", // Bar 차트 제목 설정
+      color: "black", // 제목 글자 색상을 검은색으로 설정
+      font: {
+        size: 18,
+      },
+    },
+    tooltip: {
+      callbacks: {
+        label: function (tooltipItem) {
+          return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`;
+        },
+      },
+    },
+    datalabels: {
+      color: "black", // 데이터 레이블의 글자 색상을 검은색으로 설정
+    },
+  },
+  scales: {
+    x: {
+      ticks: {
+        color: "black", // X축 눈금 옆 숫자 색상
+      },
+      grid: {
+        display: false, // X축 눈금 선 표시 여부
+      },
+    },
+    y: {
+      ticks: {
+        color: "black", // Y축 눈금 옆 숫자 색상
+      },
+      grid: {
+        display: true, // Y축 눈금 선 표시 여부
+        color: "rgba(0, 0, 0, 0.1)", // Y축 눈금 선 색상
+      },
+    },
+  },
+};
+
 export default function StatisticsPresenter({
   pieChartData,
-  pieChartOptions,
   barChartData,
-  barChartOptions,
   answerRate,
 }) {
   return (
