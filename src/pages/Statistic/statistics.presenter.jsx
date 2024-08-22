@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import { Pie, Bar } from "react-chartjs-2";
+import { Pie, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -10,7 +10,8 @@ import {
   Colors,
   CategoryScale,
   LinearScale,
-  BarElement,
+  LineElement,
+  PointElement,
 } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
@@ -23,11 +24,11 @@ ChartJS.register(
   Colors,
   CategoryScale,
   LinearScale,
-  BarElement,
+  LineElement,
+  PointElement,
   ChartDataLabels
 );
 
-// 전역 스타일 설정
 const GlobalStyle = createGlobalStyle`
   html, body {
     height: 100%;
@@ -35,9 +36,9 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #3498db, #8e44ad); /* 파란색 그라데이션 배경 */
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* 모던한 폰트 */
-    color: #ffffff;
+    background: linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%);
+    font-family: "Poppins", sans-serif;
+    color: #333333;
   }
 `;
 
@@ -45,64 +46,83 @@ const StatisticsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 1000px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  width: 95%;
+  max-width: 1200px;
   overflow: hidden;
 `;
 
 const AnswerRateContainer = styled.div`
-  margin-bottom: 20px;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(5px);
-  width: 100%;
-  max-width: 800px;
+  margin-bottom: 20px; /* 제목과 정답률 사이에 여백 추가 */
 `;
 
 const AnswerRateHeading = styled.h3`
-  font-size: 24px;
-  margin: 0 0 10px;
-  color: #f1c40f;
+  font-size: 32px;
+  margin: 100px 0 10px; /* 제목 위쪽에 40px 여백 추가 */
+  color: #2c3e50;
 `;
 
 const AnswerRateText = styled.p`
-  font-size: 20px;
+  font-size: 60px; /* 글자 크기 더욱 확대 */
   margin: 0;
+  font-weight: 700; /* 글자 굵기 확대 */
+  color: #2c3e50;
 `;
 
 const ChartContainer = styled.div`
   display: flex;
+  flex-direction: row;
   width: 100%;
-  max-width: 800px;
-  height: 400px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
+  max-width: 1200px;
+  height: 800px;
+  background: #ffffff;
+  border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  justify-content: space-between;
-  overflow: hidden;
-
-  @media (max-width: 768px) {
-    height: 300px;
-    flex-direction: column;
-  }
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  overflow: auto;
 `;
 
-const ChartWrapper = styled.div`
+const PieChartBox = styled.div`
   flex: 1;
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 10px;
-  min-width: 0;
+`;
+
+const LineChartBox = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const LineChartBottom = styled.div`
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
+
+const ChartWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 // Pie 차트 옵션 설정
@@ -110,41 +130,40 @@ const pieChartOptions = {
   responsive: true,
   plugins: {
     legend: {
-      display: false, // 범례를 숨김
-      labels: {
-        color: "black", // 범례 글자 색상을 검은색으로 설정
-      },
+      display: false,
     },
     title: {
       display: true,
-      text: "내가 어떤 단어를 얼마나 틀렸을까?", // Pie 차트 제목 설정
-      color: "black", // 제목 글자 색상을 검은색으로 설정
+      text: "내가 어떤 단어를 얼마나 틀렸을까?",
+      color: "#2c3e50",
       font: {
-        size: 18,
+        size: 28 /* 제목 글자 크기 확대 */,
+        weight: "700" /* 제목 글자 굵기 확대 */,
       },
     },
     datalabels: {
-      color: "black", // 데이터 레이블의 글자 색상을 검은색으로 설정
+      color: "#2c3e50",
+      font: {
+        weight: "600",
+      },
     },
   },
 };
 
-const barChartOptions = {
+// Line 차트 옵션 설정
+const lineChartOptions = {
   responsive: true,
   plugins: {
     legend: {
-      display: true,
-      position: "top",
-      labels: {
-        color: "black", // 범례 글자 색상을 검은색으로 설정
-      },
+      display: false,
     },
     title: {
       display: true,
-      text: "퀴즈 회차 별 정답 개수", // Bar 차트 제목 설정
-      color: "black", // 제목 글자 색상을 검은색으로 설정
+      text: "퀴즈 회차 별 정답 개수",
+      color: "#2c3e50",
       font: {
-        size: 18,
+        size: 28 /* 제목 글자 크기 확대 */,
+        weight: "700" /* 제목 글자 굵기 확대 */,
       },
     },
     tooltip: {
@@ -155,54 +174,74 @@ const barChartOptions = {
       },
     },
     datalabels: {
-      color: "black", // 데이터 레이블의 글자 색상을 검은색으로 설정
+      display: false,
     },
   },
   scales: {
     x: {
       ticks: {
-        color: "black", // X축 눈금 옆 숫자 색상
+        color: "#2c3e50",
+        font: {
+          size: 16 /* x축 글자 크기 확대 */,
+        },
       },
       grid: {
-        display: false, // X축 눈금 선 표시 여부
+        display: false,
       },
     },
     y: {
+      beginAtZero: true,
+      suggestedMax: 30,
       ticks: {
-        color: "black", // Y축 눈금 옆 숫자 색상
+        color: "#2c3e50",
+        font: {
+          size: 16 /* y축 글자 크기 확대 */,
+        },
+        stepSize: 10,
       },
       grid: {
-        display: true, // Y축 눈금 선 표시 여부
-        color: "rgba(0, 0, 0, 0.1)", // Y축 눈금 선 색상
+        display: true,
+        color: "rgba(0, 0, 0, 0.1)",
       },
+    },
+  },
+  elements: {
+    point: {
+      radius: 0,
     },
   },
 };
 
 export default function StatisticsPresenter({
   pieChartData,
-  barChartData,
+  lineChartData,
   answerRate,
 }) {
   return (
     <>
       <GlobalStyle />
       <StatisticsContainer>
-        <AnswerRateContainer>
-          <AnswerRateHeading>나의 퀴즈 정답률은?</AnswerRateHeading>
-          {answerRate !== null ? (
-            <AnswerRateText>{answerRate}%</AnswerRateText>
-          ) : (
-            <AnswerRateText>데이터를 로딩 중입니다...</AnswerRateText>
-          )}
-        </AnswerRateContainer>
         <ChartContainer>
-          <ChartWrapper>
-            <Pie data={pieChartData} options={pieChartOptions} />
-          </ChartWrapper>
-          <ChartWrapper>
-            <Bar data={barChartData} options={barChartOptions} />
-          </ChartWrapper>
+          <PieChartBox>
+            <ChartWrapper>
+              <Pie data={pieChartData} options={pieChartOptions} />
+            </ChartWrapper>
+          </PieChartBox>
+          <LineChartBox>
+            <LineChartBottom>
+              <AnswerRateContainer>
+                <AnswerRateHeading>나의 퀴즈 정답률은?</AnswerRateHeading>
+                {answerRate !== null ? (
+                  <AnswerRateText>{answerRate}%</AnswerRateText>
+                ) : (
+                  <AnswerRateText>데이터를 로딩 중입니다...</AnswerRateText>
+                )}
+              </AnswerRateContainer>
+              <ChartWrapper>
+                <Line data={lineChartData} options={lineChartOptions} />
+              </ChartWrapper>
+            </LineChartBottom>
+          </LineChartBox>
         </ChartContainer>
       </StatisticsContainer>
     </>
