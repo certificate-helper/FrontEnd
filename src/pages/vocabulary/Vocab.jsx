@@ -117,6 +117,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import searchIcon from "../../assets/searchIcon.png";
 import Inputs from "../../component/Input";
+import { TopTitle } from "../../atoms/Title";
+import HeaderUI from "../../atoms/Header";
+import FooterUI from "../../atoms/Footer";
 
 const Vocab = () => {
   const [searchWord, setSearchWord] = useState("");
@@ -167,7 +170,13 @@ const Vocab = () => {
 
   return (
     <div className="RectangleParentRoot">
+      <HeaderUI />
       <div className="MainContainer">
+        <div className="Explain">
+          <div className="Wrapper">
+            <TopTitle>VOCABULARY</TopTitle>
+          </div>
+        </div>
         <div className="SearchWrap">
           <div className="SearchContainer">
             <img src={searchIcon} alt="검색" />
@@ -178,15 +187,12 @@ const Vocab = () => {
               placeholder={"검색할 단어 입력"}
             />
             <CustomButton onClick={handleSubmit} text={"SEARCH"} />
-          </div>
-        </div>
-        <div className="ExplainContainer">
-          <div className="Explain">
-            <div className="Explain_title">VOCABULARY</div>
             <div className="Explain_title_Button">
               <CustomButton text={"단어장"} onClick={() => nav("/myvoca")} />
             </div>
           </div>
+        </div>
+        <div className="ExplainContainer">
           <div className="ExplainContent">
             {result && result.length > 0 ? (
               <div className="SearchResult">
@@ -210,6 +216,7 @@ const Vocab = () => {
           </div>
         </div>
       </div>
+      <FooterUI />
     </div>
   );
 };
