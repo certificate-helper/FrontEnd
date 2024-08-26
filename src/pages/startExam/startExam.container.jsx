@@ -57,7 +57,7 @@ export default function StartExam() {
   }, [num]); // useState는 비동기임을 명심하라.
 
   const onClickToCountUp = () => {
-    if (num < 21) {
+    if (num < 20) {
       setNum((prevNum) => prevNum + 1);
       handleGetExam();
     } else {
