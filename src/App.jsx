@@ -15,7 +15,6 @@ import StartPage from "./pages/start/startPage";
 import Quiz from "./pages/Quiz/quiz";
 import Statistics from "./pages/Statistic/statistics";
 import Note from "./pages/WrongNote/note";
-import ExamReview from "./pages/examReview/examReview.container";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -35,26 +34,30 @@ function reducer(state, action) {
 export const DiaryStateContext = createContext();
 export const DiaryDispatchContext = createContext();
 function App() {
+  const [state, dispatch] = useReducer(reducer, []);
   return (
     <div>
-      <GlobalStyle />
+      <DiaryStateContext.Provider value={state}>
+        <DiaryDispatchContext.Provider value={dispatch}>
+          <GlobalStyle />
 
-      <Routes>
-        <Route path="/vocab" element={<Vocab />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/myvoca" element={<MyVoca />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/startExam" element={<StartExam />} />
-        <Route path="/resultExam" element={<ResultExam />} />
-        <Route path="/exam" element={<Exam />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/" element={<StartPage />} />
-        <Route path="/note" element={<Note />} />
-        <Route path="/quiz" element={<Quiz />} />
-        <Route path="/statistics" element={<Statistics />} />
-        <Route path="/examReview" element={<ExamReview />} />
-      </Routes>
+          <Routes>
+            <Route path="/vocab" element={<Vocab />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/myvoca" element={<MyVoca />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/startExam" element={<StartExam />} />
+            <Route path="/resultExam" element={<ResultExam />} />
+            <Route path="/exam" element={<Exam />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/" element={<StartPage />} />
+            <Route path="/note" element={<Note />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/Statistics" element={<Statistics />} />
+          </Routes>
+        </DiaryDispatchContext.Provider>
+      </DiaryStateContext.Provider>
     </div>
   );
 }

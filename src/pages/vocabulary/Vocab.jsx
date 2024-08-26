@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./Vocab.css";
+import { DiaryStateContext, DiaryDispatchContext } from "../../App";
 import VocabList from "./VocabList";
 import CustomButton from "../../component/CustomButton";
 import { useNavigate } from "react-router-dom";
@@ -13,23 +14,39 @@ import FooterUI from "../../atoms/Footer";
 const Vocab = () => {
   const [searchWord, setSearchWord] = useState("");
   const [result, setResult] = useState(null);
-  const [vocabData, setVocabData] = useState([]);
+  const vocabData = useContext(DiaryStateContext);
+  const dispatch = useContext(DiaryDispatchContext);
+  // const [vocabData, setVocabData] = useState([]);
   const nav = useNavigate();
-
+  const URL = import.meta.env.VITE_SERVER_URL;
+  // useEffect(() => {
+  //   axios
+  //     .get(`${URL}/getAllVoca`, {
+  //       params: { id: "test" },
+  //     })
+  //     .then((response) => {
+  //       setVocabData(response.data);
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("단어 데이터를 가지고 오는 중 오류 발생:", error);
+  //     });
+  // }, []);
   useEffect(() => {
-    axios
-      .get(`${URL}/getAllVoca`, {
-        params: { id: "test" },
-      })
-      .then((response) => {
-        setVocabData(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("단어 데이터를 가지고 오는 중 오류 발생:", error);
-      });
-  }, []);
-
+    if (vocabData.length === 0) {
+      axios
+        .get(`${URL}/getAllVoca`, {
+          params: { id: "test" },
+        })
+        .then((response) => {
+          const data = response.data;
+          data.forEach((item) => dispatch({ type: "CREATE", data: item }));
+        })
+        .catch((error) => {
+          console.error("단어 데이터를 가지고 오는 중 오류 발생:", error);
+        });
+    }
+  }, [vocabData, dispatch]);
   const FindWord = (e) => {
     setSearchWord(e.target.value);
   };
