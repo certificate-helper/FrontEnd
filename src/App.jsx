@@ -15,6 +15,7 @@ import StartPage from "./pages/start/startPage";
 import Quiz from "./pages/Quiz/quiz";
 import Statistics from "./pages/Statistic/statistics";
 import Note from "./pages/WrongNote/note";
+import ExamReview from "./pages/examReview/examReview.container";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -51,7 +52,8 @@ function App() {
         <Route path="/" element={<StartPage />} />
         <Route path="/note" element={<Note />} />
         <Route path="/quiz" element={<Quiz />} />
-        <Route path="/Statistics" element={<Statistics />} />
+        <Route path="/statistics" element={<Statistics />} />
+        <Route path="/examReview" element={<ExamReview />} />
       </Routes>
     </div>
   );

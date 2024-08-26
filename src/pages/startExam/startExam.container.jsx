@@ -61,7 +61,7 @@ export default function StartExam() {
       setNum((prevNum) => prevNum + 1);
       handleGetExam();
     } else {
-      nav("/note");
+      nav("/ExamReview");
     }
   };
 
