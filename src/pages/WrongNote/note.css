@@ -43,6 +43,7 @@ body {
   max-width: 800px;
   background: #ffffff;
   padding: 20px;
+  margin: 20rem 0;
   box-sizing: border-box;
   border: 1px solid #ddd; /* 얇은 회색 경계선 */
   border-radius: 10px;

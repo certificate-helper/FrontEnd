@@ -1,33 +1,3 @@
-// import "./Login.css";
-// import { useNavigate } from "react-router-dom";
-// import Button from "../component/CustomButton";
-// const Login = () => {
-//   const nav = useNavigate();
-//   return (
-//     <div className="LoginContainer">
-//       <div className="Login">
-//         <div className="Info">
-//           <h2>로그인</h2>
-//           <div className="IdInfo">
-//             <label>ID</label>
-//             <input type="text" placeholder="ID를 입력해주세요"></input>
-//           </div>
-
-//           <div className="PwInfo">
-//             <label>PW</label>
-//             <input type="password" placeholder="PW를 입력해주세요"></input>
-//           </div>
-//           <div className="BtnWrap">
-//             <Button variant="contained" text={"로그인"} />
-//             <Button onClick={() => nav(`/signup`)} text={"회원가입"}></Button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-// export default Login;
-
 import "./Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

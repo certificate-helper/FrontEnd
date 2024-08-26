@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./note.css";
 import axios from "axios";
+import { TopTitle } from "../../atoms/Title";
+import HeaderUI from "../../atoms/Header";
+import { MainContainer, MainWrapper } from "../../atoms/MainContainer";
+import FooterUI from "../../atoms/Footer";
 
 const Note = () => {
-  const navigate = useNavigate();
+  const nav = useNavigate();
   const [mistakes, setMistakes] = useState([]); // 오답 목록을 저장할 상태
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 번호를 저장할 상태
   const itemsPerPage = 5; // 한 페이지에 표시할 오답 개수
@@ -27,7 +31,7 @@ const Note = () => {
   }, []);
 
   const handleBack = () => {
-    navigate(-1); // 이전 페이지로 돌아갑니다.
+    nav("/home"); // 이전 페이지로 돌아갑니다.
   };
 
   // 현재 페이지에 표시할 오답 항목을 계산
@@ -44,42 +48,48 @@ const Note = () => {
   const totalPages = Math.ceil(mistakes.length / itemsPerPage);
 
   return (
-    <div className="noteWrapper">
-      <div className="headerBar showHeaderBar">오답 노트</div>
-      <div className="noteContainer">
-        <div className="noteTitle">오답 목록</div>
-        {currentMistakes.length > 0 ? (
-          <ul className="noteList">
-            {currentMistakes.map((mistake, index) => (
-              <li key={index} className="noteItem">
-                <div className="noteQuestion">
-                  {indexOfFirstItem + index + 1}번 문제: {mistake.problem}
-                </div>
-                <div className="noteCommentary">해설: {mistake.commentary}</div>
-              </li>
+    <MainWrapper>
+      <HeaderUI />
+      <MainContainer>
+        <TopTitle>오답노트</TopTitle>
+        <div className="noteContainer">
+          <div className="noteTitle">오답 목록</div>
+          {currentMistakes.length > 0 ? (
+            <ul className="noteList">
+              {currentMistakes.map((mistake, index) => (
+                <li key={index} className="noteItem">
+                  <div className="noteQuestion">
+                    {indexOfFirstItem + index + 1}번 문제: {mistake.problem}
+                  </div>
+                  <div className="noteCommentary">
+                    해설: {mistake.commentary}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="noErrors">오답이 없습니다!</div>
+          )}
+          <div className="pagination">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index + 1}
+                className={`pageButton ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
             ))}
-          </ul>
-        ) : (
-          <div className="noErrors">오답이 없습니다!</div>
-        )}
-        <div className="pagination">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index + 1}
-              className={`pageButton ${
-                currentPage === index + 1 ? "active" : ""
-              }`}
-              onClick={() => handlePageChange(index + 1)}
-            >
-              {index + 1}
-            </button>
-          ))}
+          </div>
+          <button className="backButton" onClick={handleBack}>
+            홈으로 이동
+          </button>
         </div>
-        <button className="backButton" onClick={handleBack}>
-          돌아가기
-        </button>
-      </div>
-    </div>
+      </MainContainer>
+      <FooterUI />
+    </MainWrapper>
   );
 };
 
