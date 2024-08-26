@@ -15,14 +15,14 @@ const Login = () => {
       // 백엔드로 로그인 요청 보내기
       const response = await axios.get(`${URL}/signIn`, {
         params: {
-          id: id,
-          pass: pass,
+          id,
+          pass,
         },
       });
 
       if (response.data === "ok") {
         // 로그인 성공 시
-        nav("/dashboard"); // 로그인 성공 후 이동할 페이지
+        nav("/dashboard");
       } else {
         // 로그인 실패 시
         alert("로그인 실패: ID나 비밀번호를 확인하세요.");
@@ -30,6 +30,7 @@ const Login = () => {
     } catch (error) {
       console.error("로그인 중 오류가 발생했습니다.", error);
     }
+    sessionStorage.setItem("id", JSON.stringify(id));
   };
 
   return (

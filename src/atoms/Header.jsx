@@ -12,10 +12,12 @@ export default function HeaderUI() {
   const onClickToProfile = () => {
     nav("/profile");
   };
+
+  const setId = sessionStorage.getItem("id");
   return (
     <Header>
       <Logo onClick={onClickToHome}>자격증헬퍼</Logo>
-      <HeaderText>ID님, 오늘도 힘내세요!</HeaderText>
+      <HeaderText>{setId}님, 오늘도 힘내세요!</HeaderText>
       <HeaderButton onClick={onClickToProfile}>view profile</HeaderButton>
     </Header>
   );
