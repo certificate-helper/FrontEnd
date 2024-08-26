@@ -11,7 +11,7 @@ export default function Home() {
   };
 
   const onClickToWrong = () => {
-    nav("/note");
+    nav("/examReview");
   };
   const onClickToQuiz = () => {
     nav("/quiz");

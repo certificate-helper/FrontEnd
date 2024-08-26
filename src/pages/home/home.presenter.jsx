@@ -116,7 +116,7 @@ export default function HomeUI({
                   시험보기
                 </S.TopBoxButton>
                 <S.TopBoxButton onClick={onClickToWrong}>
-                  오답노트
+                  기출 오답
                 </S.TopBoxButton>
                 <S.TopBoxButton2 onClick={onClickToVoca}>
                   단어장
@@ -132,7 +132,7 @@ export default function HomeUI({
               <S.TopBoxBtnContainer>
                 <S.TopBoxButton>퀴즈</S.TopBoxButton>
                 <S.TopBoxButton>시험보기</S.TopBoxButton>
-                <S.TopBoxButton>오답노트</S.TopBoxButton>
+                <S.TopBoxButton>기출 오답</S.TopBoxButton>
                 <S.TopBoxButton2>단어장</S.TopBoxButton2>
               </S.TopBoxBtnContainer>
             </S.TopBox>
@@ -145,7 +145,7 @@ export default function HomeUI({
               <S.TopBoxBtnContainer>
                 <S.TopBoxButton>퀴즈</S.TopBoxButton>
                 <S.TopBoxButton>시험보기</S.TopBoxButton>
-                <S.TopBoxButton>오답노트</S.TopBoxButton>
+                <S.TopBoxButton>기출 오답</S.TopBoxButton>
                 <S.TopBoxButton2>단어장</S.TopBoxButton2>
               </S.TopBoxBtnContainer>
             </S.TopBox>

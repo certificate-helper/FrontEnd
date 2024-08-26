@@ -20,7 +20,7 @@ const Login = () => {
       });
 
       if (response.data === "ok") {
-        nav("/dashboard");
+        nav("/home");
       } else {
         alert("로그인 실패: ID나 비밀번호를 확인하세요.");
       }
