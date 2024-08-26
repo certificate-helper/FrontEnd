@@ -8,7 +8,7 @@ const CustomButton = ({ text, onClick }) => {
       variant="contained"
       onClick={onClick}
       sx={{
-        backgroundColor: "#efefef",
+        backgroundColor: "#ffffff1a",
         color: "black",
         "&:hover": {
           backgroundColor: "2788f9",

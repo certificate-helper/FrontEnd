@@ -19,7 +19,7 @@ export default function lastPage() {
           className="logoImg"
           src={logoImg}
           alt="로고이미지"
-          onClick={() => nav("/home")}
+          onClick={() => nav("/login")}
         />
       </div>
     </div>

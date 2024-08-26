@@ -13,6 +13,7 @@ export default function HomeUI({
   onClickToWrong,
   onClickToVoca,
   datas,
+  getId,
 }) {
   return (
     <MainWrapper>
@@ -104,7 +105,7 @@ export default function HomeUI({
             ]}
           />
         </S.PieContainer>
-        <TopTitle>ID님의 시험합격을 도와드릴게요!</TopTitle>
+        <TopTitle>{getId}님의 시험합격을 도와드릴게요!</TopTitle>
 
         <S.TopBoxContainer>
           <S.TopBoxWrapper>

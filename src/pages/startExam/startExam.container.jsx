@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function StartExam() {
   const URL = import.meta.env.VITE_SERVER_URL;
   const [num, setNum] = useState(1);
-  const [answer, setAnswer] = useState(Array(20).fill(""));
+  const [answer, setAnswer] = useState(Array(14).fill("")); //hotfix: 현재 문제 수 13
   const [exam, setExam] = useState(null);
   const nav = useNavigate();
 
@@ -37,7 +37,7 @@ export default function StartExam() {
       const response = await axios.post(`${URL}/check-exam-answer`, {
         id: "test",
         // eslint-disable-next-line no-undef
-        answer: array[num],
+        answer: answer[num],
         num,
       });
       console.log(answer, num, "checking answer:", response);

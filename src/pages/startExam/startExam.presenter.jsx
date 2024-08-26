@@ -64,7 +64,6 @@ export default function StartExamUI({
                     newAnswer[num] = e.target.value; // 현재 num 인덱스에 새 값 설정
                     setAnswer(newAnswer); // 전체 배열 업데이트
                   }}
-                  required
                 />
                 ;
                 <S.ButtonWrapper>

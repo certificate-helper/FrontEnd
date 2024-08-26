@@ -1,7 +1,7 @@
-import "./Signup.css";
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import CustomButton from "../../component/CustomButton";
+import * as S from "./Signup.styles";
 
 const SignUp = ({ onCreate }) => {
   const [Id, setId] = useState("");
@@ -40,20 +40,6 @@ const SignUp = ({ onCreate }) => {
     }
   };
 
-  // const onSubmit = () => {
-  //   if (Id === "") {
-  //     IdRef.current.focus();
-  //     return;
-  //   } else if (Id.length < 6 || Id.length > 20) {
-  //     console.log("fail");
-  //     return;
-  //   } else {
-  //     console.log("success");
-  //   }
-  //   onCreate(Id);
-  //   setId("");
-  // };
-
   const sign = async () => {
     try {
       const response = await axios.post(`${URL}/signUP`, {
@@ -69,42 +55,44 @@ const SignUp = ({ onCreate }) => {
       setCheckMessage("비밀번호 검사중 오류 발생");
     }
   };
+
   return (
-    <div className="SignContainer">
-      <div className="Sign">
-        <h2>회원가입</h2>
-        <div className="info">
-          <span>아이디</span>
-          <div className="confirm">
-            <input
+    <S.SignContainer>
+      <S.Sign>
+        <S.Title>회원가입</S.Title>
+        <S.Info>
+          <S.Title1>아이디</S.Title1>
+          <S.Confirm>
+            <S.Input
               ref={IdRef}
               value={Id}
               onChange={onChangeId}
               placeholder="아이디를 입력(6~20자)"
             />
-          </div>
+          </S.Confirm>
           <CustomButton onClick={checkId} text={"중복검사"} />
-          {checkMessage && <p>{checkMessage}</p>}
-          <span>비밀번호</span>
-          <input
+          {checkMessage && <S.CheckMessage>{checkMessage}</S.CheckMessage>}
+          <S.Title1>비밀번호</S.Title1>
+          <S.Input
             type="password"
             placeholder="비밀번호를 입력(문자,숫자,특수문자포함 4~10)"
           />
-          <span>비밀번호 확인</span>
-          <div className="pass">
-            <input type="password" placeholder="비밀번호 재입력" />
-          </div>
+          <S.Title1>비밀번호 확인</S.Title1>
+
+          <S.Input type="password" placeholder="비밀번호 재입력" />
+
           <CustomButton text={"비밀번호 확인"} />
-          <span>관심기사자격증</span>
-          <select name="certificate">
+          <S.Title1>관심기사자격증</S.Title1>
+          <S.Select name="certificate">
             <option value="">정보처리기사</option>
             <option value="">위험물산업안전기사</option>
             <option value="">전기기사</option>
-          </select>
+          </S.Select>
           <CustomButton text={"가입"} onClick={sign} />
-        </div>
-      </div>
-    </div>
+        </S.Info>
+      </S.Sign>
+    </S.SignContainer>
   );
 };
+
 export default SignUp;

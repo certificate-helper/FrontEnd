@@ -2,17 +2,16 @@ import "./Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../component/CustomButton";
-import axios from "axios"; // Axios를 사용하여 HTTP 요청을 보냅니다.
+import axios from "axios";
 
 const Login = () => {
-  const [id, setId] = useState(""); // ID 상태 관리
-  const [pass, setPass] = useState(""); // PW 상태 관리
+  const [id, setId] = useState("");
+  const [pass, setPass] = useState("");
   const nav = useNavigate();
   const URL = import.meta.env.VITE_SERVER_URL;
 
   const handleLogin = async () => {
     try {
-      // 백엔드로 로그인 요청 보내기
       const response = await axios.get(`${URL}/signIn`, {
         params: {
           id,
@@ -21,10 +20,8 @@ const Login = () => {
       });
 
       if (response.data === "ok") {
-        // 로그인 성공 시
         nav("/dashboard");
       } else {
-        // 로그인 실패 시
         alert("로그인 실패: ID나 비밀번호를 확인하세요.");
       }
     } catch (error) {
@@ -46,25 +43,20 @@ const Login = () => {
               type="text"
               placeholder="ID를 입력해주세요"
               value={id}
-              onChange={(e) => setId(e.target.value)} // 입력값을 ID 상태에 저장
+              onChange={(e) => setId(e.target.value)}
             />
           </div>
-
           <div className="PwInfo">
             <label>PW</label>
             <input
               type="password"
               placeholder="PW를 입력해주세요"
               value={pass}
-              onChange={(e) => setPass(e.target.value)} // 입력값을 PW 상태에 저장
+              onChange={(e) => setPass(e.target.value)}
             />
           </div>
           <div className="BtnWrap">
-            <Button
-              variant="contained"
-              text={"로그인"}
-              onClick={handleLogin} // 로그인 버튼 클릭 시 로그인 처리 함수 호출
-            />
+            <Button variant="contained" text={"로그인"} onClick={handleLogin} />
             <Button onClick={() => nav(`/signup`)} text={"회원가입"} />
           </div>
         </div>

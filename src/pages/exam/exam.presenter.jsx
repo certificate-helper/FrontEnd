@@ -6,12 +6,11 @@ import { TopTitle } from "../../atoms/Title";
 
 export default function ExamUI({
   onClickToStart,
-  setId,
   setRound,
   setYear,
-  id,
   year,
   round,
+  getId,
 }) {
   return (
     <MainWrapper>
@@ -21,9 +20,10 @@ export default function ExamUI({
         <form onSubmit={onClickToStart}>
           <S.SelectContainer>
             <S.SelectWrapper>
-              <S.Text>이름은 </S.Text>
-              <S.IdInput value={id} onChange={(e) => setId(e.target.value)} />
-              <S.Text>이며,</S.Text>
+              <S.Text>
+                이름은 {getId}
+                이며,
+              </S.Text>
             </S.SelectWrapper>
             <S.SelectWrapper>
               <S.Select
@@ -31,11 +31,10 @@ export default function ExamUI({
                 onChange={(e) => setYear(e.target.value)}
                 required
               >
-                <option value="2018">2018</option>
-                <option value="2019">2019</option>
                 <option value="2020">2020</option>
                 <option value="2021">2021</option>
                 <option value="2022">2022</option>
+                <option value="2023">2023</option>
               </S.Select>
               <S.Text>년도의</S.Text>
             </S.SelectWrapper>
@@ -48,8 +47,6 @@ export default function ExamUI({
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
               </S.Select2>
               <S.Text>회차 시험을 치겠습니다.</S.Text>
             </S.SelectWrapper>

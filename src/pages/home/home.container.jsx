@@ -20,6 +20,8 @@ export default function Home() {
     nav("/vocab");
   };
 
+  const getId = sessionStorage.getItem("id");
+
   const [categories, setCategories] = useState([]);
   const [count, setCount] = useState([]);
   const URL = import.meta.env.VITE_SERVER_URL;
@@ -52,6 +54,7 @@ export default function Home() {
       onClickToWrong={onClickToWrong}
       onClickToVoca={onClickToVoca}
       datas={datas}
+      getId={getId}
     />
   );
 }
