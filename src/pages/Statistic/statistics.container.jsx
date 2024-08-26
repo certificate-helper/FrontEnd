@@ -33,14 +33,14 @@ export default function StatisticsContainer() {
     ],
   });
 
-  const [barChartData, setBarChartData] = useState({
+  const [lineChartData, setLineChartData] = useState({
     labels: [],
     datasets: [
       {
         label: "Answer Rates",
         data: [],
-        backgroundColor: [],
-        borderColor: [],
+        borderColor: "#FF5733", // 꺾은선 색상
+        backgroundColor: "rgba(255, 87, 51, 0.2)", // 배경 색상 (채워지는 부분)
         borderWidth: 2,
       },
     ],
@@ -52,53 +52,21 @@ export default function StatisticsContainer() {
     const fetchPieChartData = async () => {
       try {
         const response = await axios.get(
-          "http://165.229.125.137:8080/get-quiz-frequency",
+          "http://165.229.125.74:8080/get-quiz-frequency",
           { params: { id: "test" } }
         );
         const apiData = response.data;
-
-        const labels = apiData.map((item) => item.word);
-        const dataValues = apiData.map((item) => parseInt(item.count, 10));
-        const colors = generateUniqueColors(apiData.length);
-
-        setPieChartData({
-          labels: labels,
-          datasets: [
-            {
-              label: "Frequency",
-              data: dataValues,
-              backgroundColor: colors,
-              borderColor: colors.map((color) => color.replace("0.6", "1")),
-              borderWidth: 2,
-            },
-          ],
-        });
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    const fetchBarChartData = async () => {
-      try {
-        const response = await axios.get(
-          "http://165.229.125.137:8080/get-quiz-answer-num",
-          { params: { id: "test" } }
-        );
-        const apiData = response.data;
-        console.log(apiData);
 
         if (Array.isArray(apiData)) {
-          const labels = apiData.map((item, index) => `Quiz ${index + 1}`);
-          const dataValues = apiData.map((item) =>
-            parseInt(item.answerRate, 10)
-          );
+          const labels = apiData.map((item) => item.word);
+          const dataValues = apiData.map((item) => parseInt(item.count, 10));
           const colors = generateUniqueColors(apiData.length);
 
-          setBarChartData({
+          setPieChartData({
             labels: labels,
             datasets: [
               {
-                label: "Answer Rates",
+                label: "Frequency",
                 data: dataValues,
                 backgroundColor: colors,
                 borderColor: colors.map((color) => color.replace("0.6", "1")),
@@ -108,14 +76,46 @@ export default function StatisticsContainer() {
           });
         }
       } catch (error) {
-        console.error("Error fetching answer num:", error);
+        console.error("Error fetching pie chart data:", error);
+      }
+    };
+
+    const fetchLineChartData = async () => {
+      try {
+        const response = await axios.get(
+          "http://165.229.125.74:8080/get-quiz-answer-num",
+          { params: { id: "test" } }
+        );
+        const apiData = response.data;
+
+        if (Array.isArray(apiData)) {
+          const labels = apiData.map((item, index) => `Quiz ${index + 1}`);
+          const dataValues = apiData.map((item) =>
+            parseInt(item.answerRate, 10)
+          );
+
+          setLineChartData({
+            labels: labels,
+            datasets: [
+              {
+                label: "Answer Rates",
+                data: dataValues,
+                borderColor: "#FF5733",
+                backgroundColor: "rgba(255, 87, 51, 0.2)",
+                borderWidth: 2,
+              },
+            ],
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching line chart data:", error);
       }
     };
 
     const fetchAnswerRate = async () => {
       try {
         const response = await axios.get(
-          "http://165.229.125.137:8080/get-quiz-answer-rate",
+          "http://165.229.125.74:8080/get-quiz-answer-rate",
           { params: { id: "test" } }
         );
         setAnswerRate(response.data.answerRate);
@@ -125,14 +125,14 @@ export default function StatisticsContainer() {
     };
 
     fetchPieChartData();
-    fetchBarChartData();
+    fetchLineChartData();
     fetchAnswerRate();
   }, []);
 
   return (
     <StatisticsPresenter
       pieChartData={pieChartData}
-      barChartData={barChartData}
+      lineChartData={lineChartData}
       answerRate={answerRate}
     />
   );

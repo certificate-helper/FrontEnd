@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./quiz.css";
 
 export default function Quiz() {
   const [answer, setAnswer] = useState("");
@@ -19,7 +20,7 @@ export default function Quiz() {
   const handleQuizSetup = async () => {
     try {
       const response = await axios.post(
-        "http://165.229.125.137:8080/setQuiz",
+        "http://165.229.125.74:8080/setQuiz",
         { id: "test" },
         {
           headers: {
@@ -35,7 +36,7 @@ export default function Quiz() {
 
   const fetchQuestion = async (index) => {
     try {
-      const response = await axios.get("http://165.229.125.137:8080/doQuiz", {
+      const response = await axios.get("http://165.229.125.74:8080/doQuiz", {
         params: { id: id, num: (index + 1).toString() },
       });
       setCurrentQuestion(response.data.problem);
@@ -47,7 +48,7 @@ export default function Quiz() {
   const fetchQuizTotal = async () => {
     try {
       const response = await axios.get(
-        "http://165.229.125.137:8080/getQuizNum",
+        "http://165.229.125.74:8080/getQuizNum",
         {
           params: { id: id },
         }
@@ -101,7 +102,7 @@ export default function Quiz() {
     }
 
     try {
-      await axios.post("http://165.229.125.137:8080/checkAnswer", null, {
+      await axios.post("http://165.229.125.74:8080/checkAnswer", null, {
         params: { id: id, voca: answer, num: (questionIndex + 1).toString() },
       });
 
@@ -162,7 +163,9 @@ export default function Quiz() {
         {currentQuestion ? (
           <>
             <div className="questionContainer">
-              <div className="question">질문: {currentQuestion}</div>
+              <div className="question">
+                {questionIndex + 1}. 질문: {currentQuestion}
+              </div>
               <form onSubmit={handleSubmit} className="form">
                 <input
                   type="text"

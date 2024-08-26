@@ -1,0 +1,143 @@
+/* 전체 감싸는 컨테이너 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+  background-color: #ffffff; /* 전체 배경을 하얀색으로 설정 */
+}
+
+.noteWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #efefef; /* #EFEFEF 배경색 */
+}
+
+/* 상단바 스타일 */
+.headerBar {
+  width: 100%;
+  height: 60px;
+  background: #4a90e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* 오답 노트 컨테이너 */
+.noteContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  background: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid #ddd; /* 얇은 회색 경계선 */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 효과 */
+  margin-top: 60px; /* 상단바 높이만큼 여백 추가 */
+  overflow-y: auto; /* 내용이 많을 때 스크롤 가능 */
+}
+
+/* 오답 노트 제목 */
+.noteTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333; /* 짙은 회색 글씨 */
+  margin-bottom: 20px;
+}
+
+/* 오답 목록 */
+.noteList {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.noteItem {
+  background: #f8f8f8; /* 연한 회색 배경 */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.noteQuestion {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.noteCommentary {
+  font-size: 16px;
+  color: #666; /* 중간 회색 글씨 */
+}
+
+/* '오답이 없습니다!' 메시지 */
+.noErrors {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pageButton {
+  padding: 10px 15px;
+  margin: 0 5px;
+  background-color: #f0f0f0; /* 연한 회색 배경 */
+  border: 1px solid #ddd; /* 회색 경계선 */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333; /* 짙은 회색 글씨 */
+  transition: background-color 0.3s ease;
+}
+
+.pageButton:hover {
+  background-color: #e0e0e0; /* 버튼을 호버할 때 배경색 변경 */
+}
+
+.pageButton.active {
+  background-color: #4a90e2; /* 현재 페이지 버튼 배경색 */
+  color: white; /* 현재 페이지 버튼 글씨색 */
+  border-color: #4a90e2; /* 현재 페이지 버튼 경계선 색상 */
+}
+
+/* 뒤로가기 버튼 */
+.backButton {
+  padding: 12px 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.backButton:hover {
+  background-color: #357abd;
+}
