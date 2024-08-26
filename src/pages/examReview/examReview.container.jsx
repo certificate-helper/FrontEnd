@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 const Styled = {
   QuestionCard: styled.div`
     background-color: #ffffff;
+    width: 50rem;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
@@ -27,7 +28,7 @@ const Styled = {
   AnswerText: styled.p`
     font-size: 1.1em;
     margin-bottom: 15px;
-    color: #28a745;
+    color: black;
     font-weight: bold;
   `,
   CommentaryText: styled.p`
@@ -109,11 +110,12 @@ export default function ExamReview() {
   return (
     <MainWrapper>
       <HeaderUI />
-      <TopTitle>시험 틀린 문제 목록</TopTitle>
+
       <MainContainer>
+        <TopTitle>시험 틀린 문제 목록</TopTitle>
         {currentData.map((item, index) => (
           <Styled.QuestionCard key={index}>
-            <Styled.ProblemText>{item.problem}</Styled.ProblemText>
+            <Styled.ProblemText>문제: {item.problem}</Styled.ProblemText>
             <Styled.AnswerText>정답: {item.answer}</Styled.AnswerText>
             {item.commentary && (
               <Styled.CommentaryText>
