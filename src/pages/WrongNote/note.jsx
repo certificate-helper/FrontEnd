@@ -8,17 +8,15 @@ const Note = () => {
   const [mistakes, setMistakes] = useState([]); // 오답 목록을 저장할 상태
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 번호를 저장할 상태
   const itemsPerPage = 5; // 한 페이지에 표시할 오답 개수
+  const URL = import.meta.env.VITE_SERVER_URL;
 
   useEffect(() => {
     const fetchMistakes = async () => {
       try {
         // 서버에서 오답 목록 데이터를 가져옵니다.
-        const response = await axios.get(
-          "http://165.229.125.74:8080/wrongQuiz",
-          {
-            params: { id: "test" },
-          }
-        );
+        const response = await axios.get(`${URL}/wrongQuiz`, {
+          params: { id: "test" },
+        });
         setMistakes(response.data); // 가져온 데이터를 상태에 저장합니다.
       } catch (error) {
         console.error("오답 데이터를 가져오는 중 오류 발생", error);

@@ -1,6 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
-import { TopTitle } from "./Title";
+import { Link } from "react-router-dom";
 
 // 글로벌 스타일 정의
 const GlobalStyle = createGlobalStyle`
@@ -18,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 export default function FooterUI() {
+  const nav = useNavigate();
   return (
     <>
       <GlobalStyle />
@@ -28,25 +30,25 @@ export default function FooterUI() {
         </Left>
         <Middle>
           <FooterText>contect Us</FooterText>
-          <MiddleText>메일주소</MiddleText>
+          <MiddleText>certificatehelper@google.com</MiddleText>
           <FooterText>github</FooterText>
-          <MiddleText>깃허브 주소</MiddleText>
+          <MiddleText>github.com/certificate-helper</MiddleText>
         </Middle>
         <ButtonContainer>
           <Wrapper1>
             <FooterText>기능</FooterText>
             <Wrapper2>
-              <FooterButton>퀴즈</FooterButton>
-              <FooterButton>시험보기</FooterButton>
-              <FooterButton>단어장</FooterButton>
-              <FooterButton>오답노트</FooterButton>
+              <FooterButton onClick={() => nav("/quiz")}>퀴즈</FooterButton>
+              <FooterButton onClick={() => nav("/exam")}>시험보기</FooterButton>
+              <FooterButton onClick={() => nav("/vocab")}>단어장</FooterButton>
+              <FooterButton onClick={() => nav("/note")}>오답노트</FooterButton>
             </Wrapper2>
           </Wrapper1>
           <Wrapper1>
             <FooterText>소개</FooterText>
             <Wrapper2>
-              <FooterButton>홈화면</FooterButton>
-              <FooterButton>About Us</FooterButton>
+              <FooterButton onClick={() => nav("/home")}>홈화면</FooterButton>
+              <FooterButton onClick={() => nav("/")}>About Us</FooterButton>
             </Wrapper2>
           </Wrapper1>
         </ButtonContainer>

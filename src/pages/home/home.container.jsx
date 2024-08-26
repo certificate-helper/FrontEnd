@@ -22,7 +22,7 @@ export default function Home() {
 
   const [categories, setCategories] = useState([]);
   const [count, setCount] = useState([]);
-  const endpoint = "http://165.229.125.137:8080";
+  const URL = import.meta.env.VITE_SERVER_URL;
 
   useEffect(() => {
     fetchCategoryTrend();
@@ -30,7 +30,7 @@ export default function Home() {
 
   const fetchCategoryTrend = async () => {
     try {
-      const response = await axios.get(`${endpoint}/get-category-trend`);
+      const response = await axios.get(`${URL}/get-category-trend`);
 
       setCategories(response.data.map((item) => item.category));
 

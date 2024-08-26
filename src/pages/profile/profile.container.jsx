@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 export default function Profile() {
   const [categories, setCategories] = useState([]);
   const [count, setCount] = useState([]);
-  const endpoint = "http://165.229.125.137:8080";
+  const URL = import.meta.env.VITE_SERVER_URL;
 
   useEffect(() => {
     fetchWrongCategory();
   }, []);
   const fetchWrongCategory = async () => {
     try {
-      const response = await axios.get(`${endpoint}/get-wrong-category`, {
+      const response = await axios.get(`${URL}/get-wrong-category`, {
         params: { id: "test" },
       });
       setCategories(response.data.map((item) => item.category));

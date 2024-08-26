@@ -38,11 +38,12 @@ const Login = () => {
   const [id, setId] = useState(""); // ID 상태 관리
   const [pass, setPass] = useState(""); // PW 상태 관리
   const nav = useNavigate();
+  const URL = import.meta.env.VITE_SERVER_URL;
 
   const handleLogin = async () => {
     try {
       // 백엔드로 로그인 요청 보내기
-      const response = await axios.get("/signIn", {
+      const response = await axios.get(`${URL}/signIn`, {
         params: {
           id: id,
           pass: pass,

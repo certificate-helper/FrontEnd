@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function StartExam() {
-  const endpoint = "http://165.229.125.137:8080";
+  const URL = import.meta.env.VITE_SERVER_URL;
   const [num, setNum] = useState(1);
   const [answer, setAnswer] = useState(Array(20).fill(""));
   const [exam, setExam] = useState(null);
@@ -17,7 +17,7 @@ export default function StartExam() {
   const handleGetExam = async (num) => {
     if (num <= 20) {
       try {
-        const response = await axios.get(`${endpoint}/do-exam`, {
+        const response = await axios.get(`${URL}/do-exam`, {
           params: {
             id: "test",
             num,
@@ -34,7 +34,7 @@ export default function StartExam() {
   const handleCheckExamAnswer = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${endpoint}/check-exam-answer`, {
+      const response = await axios.post(`${URL}/check-exam-answer`, {
         id: "test",
         // eslint-disable-next-line no-undef
         answer: array[num],
@@ -61,7 +61,7 @@ export default function StartExam() {
       setNum((prevNum) => prevNum + 1);
       handleGetExam();
     } else {
-      nav("/resultExam");
+      nav("/note");
     }
   };
 

@@ -20,6 +20,7 @@ const generateUniqueColors = (count) => {
 };
 
 export default function StatisticsContainer() {
+  const URL = import.meta.env.VITE_SERVER_URL;
   const [pieChartData, setPieChartData] = useState({
     labels: [],
     datasets: [
@@ -51,10 +52,9 @@ export default function StatisticsContainer() {
   useEffect(() => {
     const fetchPieChartData = async () => {
       try {
-        const response = await axios.get(
-          "http://165.229.125.74:8080/get-quiz-frequency",
-          { params: { id: "test" } }
-        );
+        const response = await axios.get(`${URL}/get-quiz-frequency`, {
+          params: { id: "test" },
+        });
         const apiData = response.data;
 
         if (Array.isArray(apiData)) {
@@ -82,10 +82,9 @@ export default function StatisticsContainer() {
 
     const fetchLineChartData = async () => {
       try {
-        const response = await axios.get(
-          "http://165.229.125.74:8080/get-quiz-answer-num",
-          { params: { id: "test" } }
-        );
+        const response = await axios.get(`${URL}/get-quiz-answer-num`, {
+          params: { id: "test" },
+        });
         const apiData = response.data;
 
         if (Array.isArray(apiData)) {
@@ -114,10 +113,9 @@ export default function StatisticsContainer() {
 
     const fetchAnswerRate = async () => {
       try {
-        const response = await axios.get(
-          "http://165.229.125.74:8080/get-quiz-answer-rate",
-          { params: { id: "test" } }
-        );
+        const response = await axios.get(`${URL}/get-quiz-answer-rate`, {
+          params: { id: "test" },
+        });
         setAnswerRate(response.data.answerRate);
       } catch (error) {
         console.error("Error fetching answer rate:", error);
