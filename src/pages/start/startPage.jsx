@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import First from "./firstPage";
 import Second from "./secondPage";
 import Last from "./lastPage";
-import "../start/startPage.css";
+import "./start.css";
 
 export default function StartPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
+  // eslint-disable-next-line react/jsx-key
   const pages = [<First />, <Second />, <Last />];
 
   const moveSlide = () => {

@@ -7,7 +7,13 @@ import { MainContainer, MainWrapper } from "../../atoms/MainContainer";
 import { ResponsivePie } from "@nivo/pie";
 import * as S from "./home.styles";
 
-export default function HomeUI({ onClickToExam, datas }) {
+export default function HomeUI({
+  onClickToExam,
+  onClickToQuiz,
+  onClickToWrong,
+  onClickToVoca,
+  datas,
+}) {
   return (
     <MainWrapper>
       <HeaderUI />
@@ -104,12 +110,16 @@ export default function HomeUI({ onClickToExam, datas }) {
           <S.TopBoxWrapper>
             <S.TopBox>
               <S.TopBoxBtnContainer>
-                <S.TopBoxButton>퀴즈</S.TopBoxButton>
+                <S.TopBoxButton onClick={onClickToQuiz}>퀴즈</S.TopBoxButton>
                 <S.TopBoxButton onClick={onClickToExam}>
                   시험보기
                 </S.TopBoxButton>
-                <S.TopBoxButton>오답노트</S.TopBoxButton>
-                <S.TopBoxButton2>단어장</S.TopBoxButton2>
+                <S.TopBoxButton onClick={onClickToWrong}>
+                  오답노트
+                </S.TopBoxButton>
+                <S.TopBoxButton2 onClick={onClickToVoca}>
+                  단어장
+                </S.TopBoxButton2>
               </S.TopBoxBtnContainer>
             </S.TopBox>
             <S.TopBoxText>{`정보처리기사 `}</S.TopBoxText>
@@ -125,7 +135,7 @@ export default function HomeUI({ onClickToExam, datas }) {
                 <S.TopBoxButton2>단어장</S.TopBoxButton2>
               </S.TopBoxBtnContainer>
             </S.TopBox>
-            <S.TopBoxText>{`정보처리기사 `}</S.TopBoxText>
+            <S.TopBoxText>{`정보보안기사(준비중) `}</S.TopBoxText>
           </S.TopBoxWrapper>
           <S.TopBoxWrapper>
             {" "}
@@ -138,22 +148,10 @@ export default function HomeUI({ onClickToExam, datas }) {
                 <S.TopBoxButton2>단어장</S.TopBoxButton2>
               </S.TopBoxBtnContainer>
             </S.TopBox>
-            <S.TopBoxText>{`정보처리기사 `}</S.TopBoxText>
+            <S.TopBoxText>{`정보산업처리기사(준비중) `}</S.TopBoxText>
           </S.TopBoxWrapper>
         </S.TopBoxContainer>
         <S.Row />
-        <TopTitle>시험 접수 날짜, 가격, 팁을 확인하세요! </TopTitle>
-        <S.Post>
-          <S.PostContainer>
-            <S.LabelWrapper>
-              <S.LabelText>시험 점수</S.LabelText>
-              <S.LabelText>접수 날짜</S.LabelText>
-              <S.LabelText>접수 가격</S.LabelText>
-            </S.LabelWrapper>
-            <S.Name>{`정보처리기사 `}</S.Name>
-            <S.SubName>시험 일정</S.SubName>
-          </S.PostContainer>
-        </S.Post>
       </MainContainer>
       <FooterUI />
     </MainWrapper>

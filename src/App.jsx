@@ -12,6 +12,9 @@ import Profile from "./pages/profile/profile.container";
 import Exam from "./pages/exam/exam.container";
 import GlobalStyle from "./pages/global";
 import StartPage from "./pages/start/startPage";
+import Quiz from "./pages/Quiz/quiz";
+import Statistics from "./pages/Statistic/statistics";
+
 const VocabData = [
   {
     id: 1,
@@ -157,18 +160,15 @@ function App() {
         >
           <Routes>
             <Route path="/vocab" element={<Vocab />} />
-            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/myvoca" element={<MyVoca />} />
-            <Route path="/home" element={<Home />} />{" "}
+            <Route path="/home" element={<Home />} />
             <Route path="/startExam" element={<StartExam />} />{" "}
             <Route path="/resultExam" element={<ResultExam />} />{" "}
             <Route path="/exam" element={<Exam />} />{" "}
             <Route path="/profile" element={<Profile />} />
-            <Route path="/startpage" element={<StartPage />} />
-            {/* <Route path="/quiz" element={<Quiz />} />
-            <Route path="/note" element={<Note />} />
-            <Route path="/statistics" element={<Statistics />} /> */}
+            <Route path="/" element={<StartPage />} />
           </Routes>
         </DiaryDispatchContext.Provider>
       </DiaryStateContext.Provider>
@@ -177,3 +177,4 @@ function App() {
 }
 
 export default App;
+//<Route path="/note" element={<Note />} />}

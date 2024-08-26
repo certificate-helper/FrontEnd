@@ -29,18 +29,15 @@ export const SelectContainer = styled.div`
 `;
 export const NumberWrapper = styled.div`
   width: 10rem;
-
   border-radius: 1rem;
   border: 2px solid black;
-  padding: 1rem;
-  margin: 1rem;
 `;
 export const Number = styled.div`
   margin: 0 1rem;
 `;
 export const ButtonWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -63,16 +60,12 @@ export const AnswerInput = styled.input`
   height: 5rem;
 `;
 export const PreviousButton = styled(Button)`
-  margin-right: 10px;
+  margin-right: 0.5rem;
 `;
 
-export const NextButton = styled(Button)`
-  margin-left: 10px;
-`;
+export const NextButton = styled(Button)``;
 
-export const SubmitButton = styled(Button)`
-  margin: 20px;
-`;
+export const SubmitButton = styled(Button)``;
 
 export const NumButtonWrapper = styled.div`
   display: flex;
@@ -110,4 +103,12 @@ export const NumButton = styled.button`
     outline: none;
     box-shadow: 0 0 0 3px #4885ff;
   }
+`;
+
+export const LeftButton = styled.div`
+  gap: 1rem;
+`;
+
+export const RightButton = styled.div`
+  gap: 1rem;
 `;

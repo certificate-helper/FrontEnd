@@ -10,6 +10,16 @@ export default function Home() {
     nav("/exam");
   };
 
+  const onClickToWrong = () => {
+    nav("/note");
+  };
+  const onClickToQuiz = () => {
+    nav("/quiz");
+  };
+  const onClickToVoca = () => {
+    nav("/vocab");
+  };
+
   const [categories, setCategories] = useState([]);
   const [count, setCount] = useState([]);
   const endpoint = "http://165.229.125.137:8080";
@@ -35,5 +45,13 @@ export default function Home() {
     id: category,
     value: parseInt(count[index], 10),
   }));
-  return <HomeUI onClickToExam={onClickToExam} datas={datas} />;
+  return (
+    <HomeUI
+      onClickToExam={onClickToExam}
+      onClickToQuiz={onClickToQuiz}
+      onClickToWrong={onClickToWrong}
+      onClickToVoca={onClickToVoca}
+      datas={datas}
+    />
+  );
 }

@@ -68,24 +68,28 @@ export default function StartExamUI({
                 />
                 ;
                 <S.ButtonWrapper>
-                  <S.PreviousButton
-                    onClick={() => {
-                      onClickToCountDown();
-                    }}
-                  >
-                    이전
-                  </S.PreviousButton>
-                  <S.NextButton
-                    onClick={() => {
-                      onClickToCountUp();
-                    }}
-                  >
-                    다음
-                  </S.NextButton>
-                  <S.SubmitButton type="submit">제출</S.SubmitButton>
+                  <S.LeftButton>
+                    <S.PreviousButton
+                      onClick={() => {
+                        onClickToCountDown();
+                      }}
+                    >
+                      이전
+                    </S.PreviousButton>
+                    <S.NextButton
+                      onClick={() => {
+                        onClickToCountUp();
+                      }}
+                    >
+                      다음
+                    </S.NextButton>
+                  </S.LeftButton>
+                  <S.RightButton>
+                    <S.SubmitButton type="submit">제출</S.SubmitButton>{" "}
+                    <S.Button>완료</S.Button>
+                  </S.RightButton>
                 </S.ButtonWrapper>
               </form>
-              <S.Button>완료</S.Button>
             </S.SelectContainer>
 
             <S.NumButtonWrapper>
