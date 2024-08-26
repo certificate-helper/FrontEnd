@@ -136,6 +136,7 @@ const VocabItem = ({ id, voca, explain, selected }) => {
   const [pendingSelection, setPendingSelection] = useState(null);
 
   const { onUpdate } = useContext(DiaryDispatchContext);
+  const URL = import.meta.env.VITE_SERVER_URL;
 
   useEffect(() => {
     setIsSelected(selected);
@@ -153,8 +154,8 @@ const VocabItem = ({ id, voca, explain, selected }) => {
       onUpdate(id, voca, explain, pendingSelection);
 
       const apiEndpoint = pendingSelection
-        ? `http://172.30.1.28:8080/saveMyVoca`
-        : `http://172.30.1.28:8080/removeMyVoca`;
+        ? `${URL}/saveMyVoca`
+        : `${URL}/removeMyVoca`;
 
       const data = { id: "test", voca: voca };
 

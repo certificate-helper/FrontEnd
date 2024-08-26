@@ -16,7 +16,7 @@ const MyVoca = () => {
   useEffect(() => {
     // API 호출하여 단어 데이터를 가져옴
     axios
-      .get("http://192.0.0.1:8080/getAllVoca", {
+      .get(`${URL}/getAllVoca`, {
         params: { id: "test" },
       })
       .then((response) => {

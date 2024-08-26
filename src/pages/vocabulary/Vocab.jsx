@@ -129,7 +129,7 @@ const Vocab = () => {
 
   useEffect(() => {
     axios
-      .get("http://172.30.1.28:8080/getAllVoca", {
+      .get(`${URL}/getAllVoca`, {
         params: { id: "test" },
       })
       .then((response) => {

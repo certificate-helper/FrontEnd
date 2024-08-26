@@ -13,14 +13,14 @@ export default function Quiz() {
   const [loading, setLoading] = useState(true);
   const [noteButtonEnabled, setNoteButtonEnabled] = useState(false);
   const navigate = useNavigate();
-
+  const URL = import.meta.env.VITE_SERVER_URL;
   const id = "test";
 
   // 퀴즈 설정 함수
   const handleQuizSetup = async () => {
     try {
       const response = await axios.post(
-        "http://165.229.125.74:8080/setQuiz",
+        `${URL}/setQuiz`,
         { id: "test" },
         {
           headers: {
@@ -36,7 +36,7 @@ export default function Quiz() {
 
   const fetchQuestion = async (index) => {
     try {
-      const response = await axios.get("http://165.229.125.74:8080/doQuiz", {
+      const response = await axios.get(`${URL}/doQuiz`, {
         params: { id: id, num: (index + 1).toString() },
       });
       setCurrentQuestion(response.data.problem);
@@ -47,12 +47,9 @@ export default function Quiz() {
 
   const fetchQuizTotal = async () => {
     try {
-      const response = await axios.get(
-        "http://165.229.125.74:8080/getQuizNum",
-        {
-          params: { id: id },
-        }
-      );
+      const response = await axios.get(`${URL}/getQuizNum`, {
+        params: { id: id },
+      });
       if (response.data) {
         setQuizTotal(response.data);
         setResults(Array(response.data).fill(null));
@@ -102,7 +99,7 @@ export default function Quiz() {
     }
 
     try {
-      await axios.post("http://165.229.125.74:8080/checkAnswer", null, {
+      await axios.post(`${URL}/checkAnswer`, null, {
         params: { id: id, voca: answer, num: (questionIndex + 1).toString() },
       });
 

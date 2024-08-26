@@ -73,6 +73,7 @@ const SignUp = ({ onCreate }) => {
   const [checkMessage, setCheckMessage] = useState("");
   const [pass, setPass] = useState("");
   const IdRef = useRef();
+  const URL = import.meta.env.VITE_SERVER_URL;
 
   const onChangeId = (e) => {
     setId(e.target.value);
@@ -91,7 +92,7 @@ const SignUp = ({ onCreate }) => {
     onCreate(Id);
     setId("");
     try {
-      const response = await axios.get("http://165.229.125.107:8080/checkId", {
+      const response = await axios.get(`${URL}/checkId`, {
         params: { id: Id },
       });
       if (response.data === "no") {
@@ -119,15 +120,9 @@ const SignUp = ({ onCreate }) => {
   //   setId("");
   // };
 
-  const onKeyDown = (e) => {
-    if (e.keyCode === 13) {
-      onSubmit();
-    }
-  };
-
   const sign = async () => {
     try {
-      const response = await axios.post("http://165.229.125.107:8080/signUP", {
+      const response = await axios.post(`${URL}/signUP`, {
         params: { id: Id, pass: pass },
       });
       if (response.data === "no") {
@@ -151,7 +146,6 @@ const SignUp = ({ onCreate }) => {
               ref={IdRef}
               value={Id}
               onChange={onChangeId}
-              onKeyDown={onKeyDown}
               placeholder="아이디를 입력(6~20자)"
             />
           </div>
@@ -173,7 +167,7 @@ const SignUp = ({ onCreate }) => {
             <option value="">위험물산업안전기사</option>
             <option value="">전기기사</option>
           </select>
-          <CustomButton text={"가입"} />
+          <CustomButton text={"가입"} onClick={sign} />
         </div>
       </div>
     </div>

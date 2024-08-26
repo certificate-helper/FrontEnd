@@ -5,10 +5,10 @@ const SignIn = () => {
   const [id, setId] = useState("");
   const [pass, setPass] = useState("");
   const [message, setMessage] = useState("");
-
+  const URL = import.meta.env.VITE_SERVER_URL;
   const handleSignIn = async () => {
     try {
-      const response = await axios.get("http://172.30.1.58:8080/signIn", {
+      const response = await axios.get(`${URL}/signIn`, {
         params: {
           id,
           pass,
