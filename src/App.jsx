@@ -16,6 +16,7 @@ import Quiz from "./pages/Quiz/quiz";
 import Statistics from "./pages/Statistic/statistics";
 import Note from "./pages/WrongNote/note";
 import ExamReview from "./pages/examReview/examReview.container";
+import Community from "./pages/community/community";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -57,6 +58,7 @@ function App() {
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/Statistics" element={<Statistics />} />
             <Route path="/exaReivew" element={<ExamReview />} />
+            <Route path="/community" element={<Community />}/>
           </Routes>
         </DiaryDispatchContext.Provider>
       </DiaryStateContext.Provider>
